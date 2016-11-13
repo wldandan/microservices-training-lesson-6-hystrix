@@ -25,7 +25,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class EventCompositeController {
 
     @Autowired
-    private EventCompositeGateway integration;
+    private EventCompositeGateway gateway;
 
     @GetMapping(path = "/", produces = {HAL_JSON_VALUE, APPLICATION_JSON_VALUE, APPLICATION_JSON_UTF8_VALUE})
     public HttpEntity<ResourceSupport> root() {
@@ -36,9 +36,9 @@ public class EventCompositeController {
 
     @GetMapping(path = "/{eventId}", produces = {HAL_JSON_VALUE, APPLICATION_JSON_VALUE, APPLICATION_JSON_UTF8_VALUE})
     public ResponseEntity<EventAggregated> getEvent(@PathVariable String eventId) {
-        Event event = integration.getEvent(eventId);
-        List recommendations = integration.getRecommendations(eventId);
-        List reviews = integration.getReviews(eventId);
+        Event event = gateway.getEvent(eventId);
+        List recommendations = gateway.getRecommendations(eventId);
+        List reviews = gateway.getReviews(eventId);
 
         EventAggregated eventAggregated = new EventAggregated(event, recommendations, reviews);
         eventAggregated.add(new Link(new UriTemplate(linkTo(EventCompositeController.class, "").slash(eventId).toString()), "self"));

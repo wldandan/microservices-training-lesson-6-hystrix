@@ -14,7 +14,7 @@
 
 3. 运行Event-composite-service
 
-4. 使用[seige-A http load tester and benchmarking utility](https://github.com/JoeDog/siege)对请求进行访问
+4. 使用[seige - http load tester and benchmarking utility](https://github.com/JoeDog/siege)对请求进行访问
 ```siege http://localhost:9030/1```
 
 5. 启动Review Service
@@ -25,8 +25,8 @@
 	spring-cloud-starter-hystrix-dashboard
 	在代码的主类中加入@EnableHystrixDashboard
 
-2. 访问Dashboard http://{event-host:event-port}/hystrix
-	输入http://{event-host:event-port}/hystrix.stream
+2. 访问Dashboard http://localhost:9030/hystrix
+	输入http://localhost:9030/hystrix.stream
 
 ---
 **Part 4 - 使用Turbine聚合Hystrix Dashboard
